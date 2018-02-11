@@ -24,58 +24,35 @@ td{
 color: white;
 }
 </style>
-<?php
-if (! function_exists('array_column')) {
-    function array_column(array $input, $columnKey, $indexKey = null) {
-        $array = array();
-        foreach ($input as $value) {
-            if ( !array_key_exists($columnKey, $value)) {
-                trigger_error("Key \"$columnKey\" does not exist in array");
-                return false;
-            }
-            if (is_null($indexKey)) {
-                $array[] = $value[$columnKey];
-            }
-            else {
-                if ( !array_key_exists($indexKey, $value)) {
-                    trigger_error("Key \"$indexKey\" does not exist in array");
-                    return false;
-                }
-                if ( ! is_scalar($value[$indexKey])) {
-                    trigger_error("Key \"$indexKey\" does not contain scalar value");
-                    return false;
-                }
-                $array[$value[$indexKey]] = $value[$columnKey];
-            }
-        }
-        return $array;
-    }
-}?>
 <body>
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  $district=test_input($_POST["district"]);
+  $city=test_input($_POST["city"]);
+  $bgroup=test_input($_POST["bgroup"]);
+}
+function test_input($data) {
+  $data = trim($data);
+  $data = stripslashes($data);
+  $data = htmlspecialchars($data);
+  return $data;
+}?>
 <?php 
-		 $s=$_COOKIE['name'];
-        $servername = "localhost";  
+		
+       $servername = "localhost";  
        $username = "root";  
        $password="";   
        $conn = mysql_connect ($servername , $username , $password) or die("unable to connect to host");  
        $sql = mysql_select_db ('testing',$conn) or die("unable to connect to database"); 
-	   $sql1=mysql_query("SELECT city,district FROM blooddonators WHERE name='$s'");
+	   $sql1=mysql_query("SELECT * FROM blooddonators WHERE bgroup='$bgroup' AND district='$district'");
 	   $me=array();
 	   while ($temp = mysql_fetch_assoc($sql1))
 		   $me[]=$temp;
-	   foreach($me as $me2)
-	   {
-		   $city=$me2['city'];
-		   $dist=$me2['district'];
-	   }
-	   //echo $city." ".$dist;
-	   $sql3=mysql_query("SELECT * FROM blooddonators");
-	   $userinfo = array();
-		while ($row_user = mysql_fetch_assoc($sql3))
-		$userinfo[] = $row_user;
-	//echo "</br>";
+	   $sql2=mysql_query("SELECT * FROM blooddonators WHERE bgroup='$bgroup' AND city='$city' AND district!='$district'");
+	   $me2 = array();
+		while ($temp = mysql_fetch_assoc($sql2))
+		$me2[] = $temp;
 	
-	   //array_multisort(array_column($userinfo, 'Level'), SORT_DESC,$userinfo);
 	   ?>
 <header style="background:white;">
     <div class="header-row1">
@@ -102,21 +79,21 @@ if (! function_exists('array_column')) {
         </thead>
         <?php // start a table tag in the HTML
 $count=1;
-foreach ($userinfo as $user){   //Creates a loop to loop through results
+foreach ($me as $user)
+{   //Creates a loop to loop through results
 //echo $user['district']." "."</br>";
-if($user['district']==$dist&&$user['name']!=$s)
-{
+//if($user['district']==$dist&&$user['name']!=$s)
+//
 	//echo "Umm</br>";
 echo "<tr><td>".$count."</td>"."<td>" . $user['name'] . "</td><td>" . $user['mobno'] . "</td></tr>";  //$row['index'] the index here is a field name
 $count=$count+1;
+//
 }
-}
-foreach ($userinfo as $user){   //Creates a loop to loop through results
-if($user['city']==$city&&$user['district']!=$dist)
-{
+foreach ($me2 as $user)
+{   //Creates a loop to loop through results
+
 echo "<tr><td>".$count."</td>"."<td>" . $user['name'] . "</td><td>" . $user['mobno'] . "</td></tr>";  //$row['index'] the index here is a field name
 $count=$count+1;
-}
 }
 echo "</table>";
 		?>

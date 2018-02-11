@@ -11,7 +11,7 @@
 ?>
 <?php
 // define variables and set to empty values
-$name = $sex = $age = $district =$city=$state= $mobno="";
+$name = $sex = $age = $district =$city=$state= $mobno=$email=$bgroup="";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $name = test_input($_POST["name"]);
   $sex=test_input($_POST["sex"]);
@@ -20,7 +20,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $city=test_input($_POST["city"]);
   $state=test_input($_POST["state"]);
   $mobno=test_input($_POST["mobno"]);
-$password=test_input($_POST["password"]);
+  $email=test_input($_POST["email"]);
+  $bgroup=test_input($_POST["bgroup"]);
 }
 function test_input($data) {
   $data = trim($data);
@@ -31,7 +32,7 @@ function test_input($data) {
 ?>
 <?php
 
-	$sql3 = "INSERT INTO blooddonators (name,sex,age,district,city,mobno,state,password) VALUES ('$name', '$sex', '$age','$district','$city','$mobno','$state','$password')";
+	$sql3 = "INSERT INTO blooddonators (name,sex,age,district,city,mobno,state,email,bgroup) VALUES ('$name', '$sex', '$age','$district','$city','$mobno','$state','$email','$bgroup')";
   //echo $sql3;
   if (mysql_query($sql3,$conn) == TRUE)
   {

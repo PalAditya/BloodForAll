@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Registration Page</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<script>
+$(document).ready(function(){
+$("#p1").one({
+    mouseenter: function(){
+       // alert("Are you sure you want to submit?");
+    }
+});});
+</script>
+<!--<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar"><span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>   </button>
+    </div><div class="collapse navbar-collapse" id="myNavbar">
+    <ul class="nav navbar-nav">
+      <li><a href="Title.html">Home</a></li>
+      <li ><a href="Academics.html">Academics</a></li>
+      <li><a href="Alumni.html">Alumni</a></li>
+      <li><a href="Sports.html">Sports</a></li>
+	<li ><a href="News.html">News and Events</a></li>
+	<li><a href="Memory.html">Photo Gallery</a></li>
+    </ul>
+<ul class="nav navbar-nav navbar-right"><li><a href="School/Initialpage2.html" class="btn btn-link" role="button">View Old Website...</a></li><li class="active"><a href="Form.html">Register</a></li></ul>
+  </div></div>
+</nav>-->
+<body>
+<div class="Well"><div class="bg-success">
+<div class="container"></br></br></br></br>
+  <h2>Register For Alma Fiesta Inductions</h2>
+  <form method="post" action="formget.php" enctype="multipart/form-data">  
+    <!--<div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+    </div>
+    <div class="form-group">
+      <label for="pwd">Password:</label>
+      <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
+    </div>-->
+<div class="form-group"><label for="name">Name</label><input type="text" class="form-control" id="name" placeholder="Enter Name" name="district"></div>
+<div class="form-group"><label for="age">Password</label><input type="text" class="form-control" id="age" placeholder="Enter Age" name="city"></div>
+<div class="form-group"><label for="age">Password</label><input type="text" class="form-control" id="age" placeholder="Enter Age" name="bgroup"></div>
+    <div class="checkbox">
+      <label><input type="checkbox" name="remember"> Remember me</label>
+    </div>
+    <div class="alert alert-success" id="p1"><button type="submit" class="btn btn-success">Submit</button></div>
+  </form>
+</div>
+</div></div>
+
+</body>
+</html>
